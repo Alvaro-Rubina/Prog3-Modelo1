@@ -42,6 +42,25 @@ public class Main {
         categoriaRepo.save(sandwichesCat);
         categoriaRepo.save(lomosCat);
         categoriaRepo.save(insumosCat);
-        
+
+        // Creacion de las unidades de medida
+        UnidadMedida kilogramos = UnidadMedida.builder()
+                .denominacion("Kilogramos")
+                .build();
+
+        UnidadMedida litros = UnidadMedida.builder()
+                .denominacion("Litros")
+                .build();
+
+        UnidadMedida gramos  = UnidadMedida.builder()
+                .denominacion("Gramos")
+                .build();
+
+        unidadMedidaRepo.save(kilogramos);
+        unidadMedidaRepo.save(litros);
+        unidadMedidaRepo.save(gramos);
+
+        // Creacion de Articulos Insumo
+
     }
 }
