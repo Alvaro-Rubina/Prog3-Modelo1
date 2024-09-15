@@ -109,6 +109,9 @@ public class Main {
         articuloInsumoRepo.save(sal);
         articuloInsumoRepo.save(aceite);
         articuloInsumoRepo.save(carne);
+        insumosCat.getArticulos().add(sal);
+        insumosCat.getArticulos().add(aceite);
+        insumosCat.getArticulos().add(carne);
 
         // Creacion de las imagenes
         Imagen imagen1 = Imagen.builder()
@@ -187,6 +190,7 @@ public class Main {
                 .preparacion("Mezclar los ingredientes, estirar la masa, agregar los toppings y hornear por 20 minutos.")
                 .detalles(Set.of(detallePizzaHawaiana1, detallePizzaHawaiana2, detallePizzaHawaiana3))
                 .build();
+
         ArticuloManufacturado lomoCompleto = ArticuloManufacturado.builder()
                 .denominacion("Lomo Completo")
                 .precioVenta(5000)
@@ -199,5 +203,46 @@ public class Main {
 
         articuloManuRepo.save(pizzaHawaiana);
         articuloManuRepo.save(lomoCompleto);
+        pizzasCat.getArticulos().add(pizzaHawaiana);
+        lomosCat.getArticulos().add(lomoCompleto);
+
+        // EJECUCION
+
+        // a. Mostrar todas las catgorías.
+        System.out.println("- - - Categorias:");
+        for (Categoria cat: categoriaRepo.findAll()){
+            System.out.println("* " + cat.getDenominacion());
+        }
+
+        // b. Mostrar todos los Artículos que son insumos
+        System.out.println("\n- - - Articulos Insumo:");
+        for (ArticuloInsumo artIn: articuloInsumoRepo.findAll()){
+            System.out.println("* " + artIn.getDenominacion());
+        }
+
+        // c. Mostrar todos los Artículos que son Manufacturados
+        System.out.println("\n- - - Articulos Manufacturados:");
+        for (ArticuloManufacturado artManu: articuloManuRepo.findAll()){
+            System.out.println("* " + artManu.getDenominacion());
+        }
+
+        // d. Buscar un  Artículo Manufacturado por Id.
+        System.out.println("\n- - - Buscar un Articulo Manufacturado por Id (2):");
+        System.out.println(articuloManuRepo.findById(2L).get().getDenominacion());
+
+        //e. Actualizar un  Artículo Manufacturado por Id.
+        System.out.println("\n- - - Actualizar un Articulo Manufacturado por Id (1), se actualiza el precio:");
+        ArticuloManufacturado artManu = articuloManuRepo.findById(1L).get();
+
+        System.out.println("* Precio actual: " + artManu.getPrecioVenta());
+        artManu.setPrecioVenta(4000);
+        articuloManuRepo.genericUpdate(1L, artManu);
+        System.out.println("* Precio actualizado " + artManu.getPrecioVenta());
+
+        // f. Eliminar un Artículo Manufacturado por Id
+        System.out.println("\n- - - Eliminar un Articulo Manufacturado por Id (1):");
+        articuloManuRepo.genericDelete(1L);
+        System.out.println("* Articulo eliminado.");
+
     }
 }
