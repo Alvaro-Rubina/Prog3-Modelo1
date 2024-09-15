@@ -1,6 +1,7 @@
 package org.example.model.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Builder
+@SuperBuilder
 @ToString(exclude = "detalles")
 public class ArticuloManufacturado extends Articulo {
 

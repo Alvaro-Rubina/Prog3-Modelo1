@@ -1,11 +1,12 @@
 package org.example.model.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Builder
+@SuperBuilder
 @ToString
 public class ArticuloInsumo extends Articulo {
 
